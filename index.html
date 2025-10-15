@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Raj Lama - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="nav-title">Raj Lama</div>
+      <ul class="nav-links">
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#stats">GitHub Stats</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <img id="profile-img" src="https://avatars.githubusercontent.com/u/105278045?v=4" alt="Profile Picture" class="profile-img">
+      <div class="contact-info">
+        <h2>Contact</h2>
+        <p>68 Westfield St, West Haven, CT</p>
+        <p><strong>Phone:</strong> <a href="tel:+13478079806">+1 (347) 807-9806</a></p>
+        <p><strong>Email:</strong> <a href="mailto:Samarlama53@gmail.com">Samarlama53@gmail.com</a></p>
+        <p>
+          <!-- LinkedIn icon placed before the label -->
+          <svg class="contact-icon icon-linkedin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V24h-4V8.5zM9.5 8.5h3.84v2.07h.05c.54-1.02 1.86-2.07 3.83-2.07 4.1 0 4.86 2.7 4.86 6.21V24h-4V15.7c0-1.99-.04-4.55-2.78-4.55-2.78 0-3.21 2.17-3.21 4.4V24h-4V8.5z"/></svg>
+          <strong>LinkedIn:</strong>
+          <a class="social-link" href="https://www.linkedin.com/in/raj-lama" target="_blank" rel="noopener noreferrer">Raj Lama</a>
+        </p>
+        <p>
+          <!-- GitHub icon placed before the label -->
+          <svg class="contact-icon icon-github" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.98 3.22 9.2 7.69 10.69.56.1.77-.24.77-.54 0-.27-.01-1-.02-1.96-3.13.68-3.79-1.51-3.79-1.51-.51-1.31-1.24-1.66-1.24-1.66-1.02-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15 1 .17 1.53-.75 1.53-.75.95-1.63 2.5-1.16 3.11-.89.1-.69.39-1.16.71-1.43-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.46.11-3.05 0 0 .95-.31 3.12 1.16.9-.25 1.86-.37 2.82-.37.96 0 1.92.12 2.82.37 2.17-1.47 3.12-1.16 3.12-1.16.61 1.59.23 2.76.11 3.05.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.27-5.15 5.55.4.35.76 1.04.76 2.1 0 1.52-.01 2.75-.01 3.13 0 .3.21.65.78.54 4.47-1.49 7.68-5.71 7.68-10.69C23.25 5.48 18.27.5 12 .5z"/></svg>
+          <strong>GitHub:</strong>
+          <a class="social-link" href="https://github.com/Lama-Raj" target="_blank" rel="noopener noreferrer">Lama-Raj</a>
+        </p>
+      </div>
+      <!-- Quote of the Day will be inserted here -->
+      <div id="quote-of-day" class="quote-card" aria-live="polite" aria-atomic="true">
+        <blockquote class="quote-text">Loading quote...</blockquote>
+        <div class="quote-meta"><span class="quote-author"></span></div>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="summary" class="section">
+        <h2>Summary</h2>
+        <p>
+          Results-driven IT professional specializing in cybersecurity and governance, risk, and compliance (GRC). Demonstrated hands-on experience enhancing project efficiency through threat intelligence, vulnerability assessment, and network security optimization. Skilled in Python, Linux, and Microsoft SQL to safeguard critical data and streamline problem-solving initiatives. Currently pursuing a Master’s in Cybersecurity and Networks to deepen technical expertise. Committed to leveraging analytical, technical, and collaborative abilities to strengthen organizational security posture.
+        </p>
+      </section>
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+
+        <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+          <button class="tab-button active" role="tab" aria-selected="true" data-target="programming">Programming</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-target="technical">Technical</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-target="soft">Soft Skills</button>
+        </div>
+
+        <div class="skills-panels">
+          <div id="programming" class="skills-panel" role="tabpanel">
+            <ul class="skills-list skills-programming">
+              <li data-level="90">Python</li>
+              <li data-level="75">C#</li>
+              <li data-level="80">SQL</li>
+              <li data-level="70">PowerShell</li>
+              <li data-level="70">Bash</li>
+              <li data-level="85">Git/GitHub</li>
+              <li data-level="70">ASP.NET</li>
+              <li data-level="80">Microsoft SQL Server</li>
+              <li data-level="65">AWS</li>
+              <li data-level="65">Azure</li>
+            </ul>
+          </div>
+
+          <div id="technical" class="skills-panel" role="tabpanel" hidden>
+            <ul class="skills-list skills-technical">
+              <!-- Grouped technical categories to simplify UI -->
+              <li data-level="79">System Administration (Linux, Windows Server)</li>
+              <li data-level="76">Networking (TCP/IP, Firewall, VPNs, Packet Tracing)</li>
+              <li data-level="70">Security Tools (Nmap, Nessus, Wireshark, Splunk)</li>
+              <li data-level="62">Offensive Tools (Metasploit, Burp Suite)</li>
+              <li data-level="75">GRC & Incident Response (Risk Assessment, Vulnerability Management, Threat Intel)</li>
+              <li data-level="60">Virtualization (VMware, VirtualBox)</li>
+            </ul>
+          </div>
+
+          <div id="soft" class="skills-panel" role="tabpanel" hidden>
+            <ul class="skills-list skills-soft">
+              <li data-level="90">Communication</li>
+              <li data-level="90">Problem-Solving</li>
+              <li data-level="85">Collaboration</li>
+              <li data-level="90">Attention to Detail</li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+      <section id="education" class="section">
+        <h2>Education</h2>
+        <div class="education-block">
+          <h3>University of New Haven <span class="edu-location">West Haven, CT</span></h3>
+          <p>Master of Science, Cybersecurity and Networks <span class="edu-date">(Jan 2024 - May 2026)</span></p>
+          <p>GPA: 3.6/4.0</p>
+        </div>
+        <div class="education-block">
+          <h3>Islington College <span class="edu-location">Kathmandu, Nepal</span></h3>
+          <p>Bachelor of Science, Computer Network and IT Security <span class="edu-date">(Aug 2019 – Oct 2022)</span></p>
+          <p>GPA: 3.7/4.0 | Honors: Upper Second Class</p>
+        </div>
+      </section>
+      <section id="projects" class="section">
+        <h2>Relevant Projects</h2>
+        <div class="projects-grid" id="projects-grid">
+          <!-- Projects auto-fetched from GitHub will appear here -->
+          <div class="project-card">Loading...</div>
+        </div>
+        <div class="manual-projects">
+          <h3>Battleship (Python-game.git)</h3>
+          <ul>
+            <li>Developed an interactive Battleship game in Python with turn-based gameplay, ship deployment, and attack logic.</li>
+            <li>Applied object-oriented programming (OOP) concepts and structured efficient game logic design.</li>
+            <li>Implemented unit testing using the unittest framework to ensure code reliability and maintainability.</li>
+            <li>Integrated error handling, file processing, and score tracking for an enhanced user experience.</li>
+          </ul>
+          <h3>Hospital Management System (HospitalManagementSystem.git)</h3>
+          <ul>
+            <li>Engineered a responsive web application to streamline hospital reporting and appointment processes.</li>
+            <li>Utilized Bootstrap, Microsoft SQL Server, and ASP.NET with C# to develop an integrated solution.</li>
+            <li>Enabled users to access invoices, reports, and records digitally, reducing manual effort and wait times.</li>
+            <li>Tested and deployed modules ensuring secure access and smooth performance.</li>
+          </ul>
+        </div>
+      </section>
+      <section id="stats" class="section">
+        <h2>GitHub Stats</h2>
+        <div class="github-stats-row">
+          <img src="https://github-readme-stats.vercel.app/api?username=Lama-Raj&show_icons=true&theme=radical" alt="GitHub Stats" class="github-stats">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lama-Raj&layout=compact&theme=radical" alt="Top Languages" class="github-stats">
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <p>&copy; 2025 Raj Lama. All rights reserved.</p>
+  </footer>
+  <script>window.GITHUB_USERNAME = 'Lama-Raj';</script>
+  <script>
+    // Ensure anchor clicks offset for fixed header across browsers
+    (function () {
+      function offsetScrollTo(el) {
+        if (!el) return;
+        var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60;
+        var rect = el.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var target = rect.top + scrollTop - headerH - 8; // small gap
+        window.scrollTo({ top: target, behavior: 'smooth' });
+      }
+
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if (el) {
+            e.preventDefault();
+            offsetScrollTo(el);
+            // update URL without jumping
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="projects.js"></script>
+  <script src="skills.js"></script>
+  <script src="quotes.js"></script>
+</body>
+</html>
