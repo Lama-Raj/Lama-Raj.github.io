@@ -5,6 +5,12 @@
   const GRID_ID = 'projects-grid';
   const MANUAL_SECTION_SELECTOR = '.manual-projects';
   const DEFAULT_PER_PAGE = 3;
+  // fetch a larger page so we can filter excluded repos and still show DEFAULT_PER_PAGE
+  const FETCH_PAGE = 10;
+  // repositories to exclude from the recent list
+  const EXCLUDED_REPOS = ['Lama-Raj.github.io', 'Lama-Raj'];
+  // cache key and TTL (ms)
+  const CACHE_TTL = 1000 * 60 * 15; // 15 minutes
 
   function getUsername() {
     // 1) allow override via global
@@ -99,7 +105,7 @@
     return card;
   }
 
-  async function fetchRepos(username, perPage = DEFAULT_PER_PAGE) {
+  async function fetchRepos(username, perPage = FETCH_PAGE) {
     const url = `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=${perPage}`;
     const res = await fetch(url, { headers: { Accept: 'application/vnd.github.v3+json' } });
     if (!res.ok) {
@@ -108,6 +114,36 @@
       throw err;
     }
     return res.json();
+  }
+
+  function filterAndPick(repos, take = DEFAULT_PER_PAGE) {
+    if (!Array.isArray(repos)) return [];
+    const filtered = repos.filter(r => !EXCLUDED_REPOS.includes(r.name));
+    return filtered.slice(0, take);
+  }
+
+  function readCache(username) {
+    try {
+      const key = `projects_cache_${username}`;
+      const raw = sessionStorage.getItem(key);
+      if (!raw) return null;
+      const obj = JSON.parse(raw);
+      if (!obj || !obj.timestamp || !obj.repos) return null;
+      if (Date.now() - obj.timestamp > CACHE_TTL) return null;
+      return obj.repos;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCache(username, repos) {
+    try {
+      const key = `projects_cache_${username}`;
+      const obj = { timestamp: Date.now(), repos };
+      sessionStorage.setItem(key, JSON.stringify(obj));
+    } catch (e) {
+      /* ignore */
+    }
   }
 
   async function init() {
@@ -127,7 +163,20 @@
     grid.appendChild(loading);
 
     try {
-      const repos = await fetchRepos(username, DEFAULT_PER_PAGE);
+      // check cache first
+      let repos = readCache(username);
+      if (!repos) {
+        const fetched = await fetchRepos(username, FETCH_PAGE);
+        repos = filterAndPick(fetched, DEFAULT_PER_PAGE);
+        if (repos.length > 0) writeCache(username, repos);
+      }
+
+      // if cache/fetch produced no repos, try a direct fetch (maybe user has few repos)
+      if (!Array.isArray(repos) || repos.length === 0) {
+        const fetched = await fetchRepos(username, FETCH_PAGE);
+        repos = filterAndPick(fetched, DEFAULT_PER_PAGE);
+      }
+
       if (!Array.isArray(repos) || repos.length === 0) {
         showManualFallback(grid, 'No public repositories found for ' + username + '.');
         return;
@@ -135,6 +184,28 @@
 
       grid.innerHTML = '';
       repos.forEach(r => grid.appendChild(createRepoCard(r)));
+
+      // background refresh: re-fetch every CACHE_TTL to keep the list up-to-date
+      setInterval(async function () {
+        try {
+          const fetched = await fetchRepos(username, FETCH_PAGE);
+          const fresh = filterAndPick(fetched, DEFAULT_PER_PAGE);
+          // if different, update cache and DOM
+          const cached = readCache(username) || [];
+          const cachedNames = cached.map(x => x.full_name || x.name || '');
+          const freshNames = fresh.map(x => x.full_name || x.name || '');
+          if (JSON.stringify(cachedNames) !== JSON.stringify(freshNames)) {
+            writeCache(username, fresh);
+            const gridEl = document.getElementById(GRID_ID);
+            if (gridEl) {
+              gridEl.innerHTML = '';
+              fresh.forEach(r => gridEl.appendChild(createRepoCard(r)));
+            }
+          }
+        } catch (e) {
+          // silently ignore background refresh errors
+        }
+      }, CACHE_TTL);
     } catch (err) {
       console.error('projects.js: failed to fetch repos', err);
       if (err && err.status === 403) {
