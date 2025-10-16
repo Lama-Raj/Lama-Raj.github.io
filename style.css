@@ -60,6 +60,29 @@ body {
   position: relative;
   padding: 0.25rem 0.15rem;
 }
+.nav-title {
+  position: relative; /* keep layout consistent */
+}
+.nav-title::after {
+  display: none; /* hide the underline bar for the title */
+}
+
+/* Remove default underline for the title link and keep it accessible */
+.nav-title {
+  text-decoration: none;
+  color: #222;
+  cursor: pointer;
+}
+.nav-title:hover,
+.nav-title:focus {
+  text-decoration: none;
+  color: var(--primary);
+}
+.nav-title:focus-visible {
+  outline: 3px solid rgba(45,137,239,0.18);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 .nav-links a::after {
   content: '';
   position: absolute;

@@ -9,7 +9,7 @@
 <body>
   <header class="main-header">
     <nav class="navbar">
-      <div class="nav-title">Raj Lama</div>
+  <a href="#" class="nav-title">Raj Lama</a>
       <ul class="nav-links">
         <li><a href="#summary">Summary</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -176,6 +176,18 @@
           }
         });
       });
+
+      // make the nav title return to the top / home view
+      var navTitle = document.querySelector('.nav-title');
+      if (navTitle) {
+        navTitle.addEventListener('click', function (e) {
+          e.preventDefault();
+          // smooth scroll to top (initial view)
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          // clear any hash from the URL without reloading
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        });
+      }
     })();
   </script>
   <script src="projects.js"></script>
