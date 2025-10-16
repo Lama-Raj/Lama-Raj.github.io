@@ -48,6 +48,20 @@ body {
   margin: 0;
 }
 
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  flex: 0 0 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav-links a:hover .nav-icon,
+.nav-links a:focus .nav-icon {
+  color: var(--primary);
+}
 .nav-links a {
   color: #222;
   text-decoration: none;
