@@ -19,8 +19,8 @@ body {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background: #ebebeb;
-  color: #222;
+  background: #274c77; /* coral/navy accent per user request */
+  color: #fff;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
@@ -56,17 +56,18 @@ body {
   flex: 0 0 16px;
   display: inline-block;
   vertical-align: middle;
+  color: inherit; /* use currentColor so SVG fill follows text color */
 }
-
 .nav-links a:hover .nav-icon,
 .nav-links a:focus .nav-icon {
-  color: var(--primary);
+  color: rgba(255,255,255,0.95);
 }
 .nav-links a {
-  color: #222;
+  color: rgba(255,255,255,0.95);
   text-decoration: none;
   font-weight: bold;
   transition: color 0.2s;
+
 }
 
 /* Navbar hover underline and subtle background animation */
@@ -84,13 +85,13 @@ body {
 /* Remove default underline for the title link and keep it accessible */
 .nav-title {
   text-decoration: none;
-  color: #222;
+  color: rgba(255,255,255,0.98);
   cursor: pointer;
 }
 .nav-title:hover,
 .nav-title:focus {
   text-decoration: none;
-  color: var(--primary);
+  color: rgba(255,255,255,1);
 }
 .nav-title:focus-visible {
   outline: 3px solid rgba(45,137,239,0.18);
@@ -105,7 +106,7 @@ body {
   transform: translateX(-50%) scaleX(0);
   width: 60%;
   height: 3px;
-  background: var(--primary);
+  background: rgba(255,255,255,0.9);
   border-radius: 2px;
   transition: transform 260ms cubic-bezier(.2,.9,.2,1);
   transform-origin: center;
@@ -123,11 +124,11 @@ section { scroll-margin-top: calc(var(--header-height) + 12px); }
 
 .nav-links a:hover,
 .nav-links a:focus {
-  color: var(--primary);
+  color: rgba(255,255,255,0.98);
 }
 
 .nav-links a:focus-visible {
-  outline: 3px solid rgba(45,137,239,0.18);
+  outline: 3px solid rgba(255,255,255,0.12);
   outline-offset: 4px;
   border-radius: 4px;
 }
