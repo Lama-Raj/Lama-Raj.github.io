@@ -13,6 +13,9 @@ body {
   color: #222;
 }
 
+/* Generic responsive images */
+img { max-width: 100%; height: auto; }
+
 .main-header {
   position: fixed;
   top: 0;
@@ -47,6 +50,44 @@ body {
   gap: 2rem;
   margin: 0;
 }
+
+/* Hamburger toggle button */
+.nav-toggle {
+  display: none; /* default hidden on desktop */
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+.nav-toggle:active { transform: none; }
+.nav-toggle:focus-visible { outline: 2px solid rgba(255,255,255,0.7); outline-offset: 2px; border-radius: 6px; }
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.92);
+  margin: 0;
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease, background-color 150ms ease;
+}
+
+/* Fallback for browsers without flex gap support (older mobile Safari/Android) */
+@supports not (gap: 1rem) {
+  .nav-toggle .bar + .bar { margin-top: 5px; }
+}
+.nav-toggle:hover .bar,
+.nav-toggle:focus .bar { background: #ffffff; }
+/* animate to X when open */
+.nav-toggle.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open .bar:nth-child(2) { opacity: 0; }
+.nav-toggle.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 
 .nav-icon {
@@ -118,6 +159,11 @@ body {
 
 /* Smooth scrolling for modern browsers */
 html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nav-toggle, .nav-toggle .bar { transition: none; }
+}
 
 /* prevent fixed header from covering section headings */
 section { scroll-margin-top: calc(var(--header-height) + 12px); }
@@ -623,23 +669,36 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .navbar {
+  /* Keep header a single row; make toggle visible */
+  .navbar { flex-direction: row; align-items: center; height: var(--header-height); gap: 0.5rem; }
+  .nav-title { margin-right: auto; }
+  .nav-toggle { display: inline-flex; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; }
+
+  /* Dropdown menu panel */
+  .nav-links {
+    position: absolute;
+    top: var(--header-height);
+    right: 0;
+    background: #274c77;
+    color: #fff;
     flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    gap: 0.5rem;
+    gap: 0;
+    width: min(260px, 90vw);
+    padding: 0.5rem 0;
+    margin: 0;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+    transform-origin: top right;
+    z-index: 200;
+    border-bottom-left-radius: 10px;
   }
-  .nav-title {
-    margin-bottom: 0.4rem;
-  }
-  .sidebar {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+  .nav-links li { padding: 0; }
+  .nav-links a { display: flex; align-items: center; padding: 0.8rem 1rem; }
+  .nav-links a::after { display: none; }
+
+  .sidebar { flex-direction: column; align-items: center; gap: 0.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
   /* allow repo titles to wrap on narrow screens */
   .project-card h3 a {
     white-space: normal;
@@ -649,4 +708,13 @@ footer {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Mobile polish */
+  .main-content { padding: 0.9rem; }
+  .profile-img { width: 96px; height: 96px; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.05rem; }
+  .libutton { width: 100%; max-width: 260px; height: 36px; }
+  .edu-location { float: none; display: block; margin: 0.15rem 0 0; }
+  .edu-date { display: inline-block; margin-left: 0; }
 }
