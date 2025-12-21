@@ -1,8 +1,8 @@
-/* 1. Variables: Natural & Professional */
+/* 1. Variables */
 :root {
-    --bg-color: #fdfbf7; /* Warm Paper White */
-    --text-main: #1a202c; /* Deep Charcoal */
-    --text-muted: #4a5568; /* Grey for secondary text */
+    --bg-color: #fdfbf7; /* Paper White */
+    --text-main: #1a202c; /* Navy Charcoal */
+    --text-muted: #4a5568; 
     --accent: #2c5282; /* Professional Navy */
     --border-color: #e2e8f0;
     --font-heading: 'Playfair Display', serif;
@@ -10,7 +10,6 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -21,12 +20,13 @@ body {
 }
 
 a { text-decoration: none; color: inherit; transition: 0.2s; }
-.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
 /* 2. Navigation */
 nav { padding: 30px 0; margin-bottom: 20px; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+
 .nav-links { display: flex; gap: 30px; align-items: center; }
 .nav-links a { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
 .nav-links a:hover { color: var(--accent); }
@@ -44,69 +44,104 @@ nav { padding: 30px 0; margin-bottom: 20px; }
 .hero-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; }
 
 .overline { 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    font-size: 0.75rem; 
-    color: var(--text-muted); 
-    font-weight: 700; 
-    margin-bottom: 20px; 
+    text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; 
+    color: var(--text-muted); font-weight: 700; margin-bottom: 20px; 
 }
 
 .hero-text h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    line-height: 1.1;
-    margin-bottom: 30px;
-    color: var(--text-main);
+    font-family: var(--font-heading); font-size: 3rem; line-height: 1.1; 
+    margin-bottom: 30px; color: var(--text-main);
 }
-
 .bio { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; }
 
 .cta-group { display: flex; align-items: center; gap: 30px; }
 .btn-primary {
-    background-color: var(--accent);
-    color: white;
-    padding: 14px 30px;
-    border-radius: 4px;
-    font-weight: 700;
+    background-color: var(--accent); color: white; padding: 14px 30px; 
+    border-radius: 4px; font-weight: 700;
 }
 .btn-primary:hover { background-color: var(--text-main); }
-.link-text { border-bottom: 1px solid var(--text-main); padding-bottom: 2px; font-weight: 700; }
+
+.link-text { 
+    border-bottom: 1px solid var(--text-main); padding-bottom: 2px; 
+    font-weight: 700; white-space: nowrap; 
+}
 .link-text:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ... other CSS ... */
-
+/* Profile Image */
 .hero-img img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
+    width: 280px; height: 280px; object-fit: cover;
+    border-radius: 50%; border: 4px solid white;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    
-    /* BLACK & WHITE EFFECT */
-    filter: grayscale(100%); 
-    transition: 0.5s ease;
+    filter: grayscale(100%); transition: 0.5s ease;
+}
+.hero-img img:hover { filter: grayscale(0%); }
+
+/* 4. Skills Domain Grid */
+#tech-stack { padding: 60px 0; background: white; border-top: 1px solid var(--border-color); }
+.section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 40px; }
+
+.skills-domain-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; margin-top: 40px;
+}
+.domain-card {
+    background: white; border: 1px solid var(--border-color); border-radius: 8px;
+    padding: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; position: relative; overflow: hidden;
+}
+.domain-card:hover {
+    transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+}
+.domain-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: var(--accent); opacity: 0; transition: 0.3s;
+}
+.domain-card:hover::before { opacity: 1; }
+
+.domain-icon { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+.domain-card h3 {
+    font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 20px;
+    padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; color: var(--text-main);
+}
+.domain-list { list-style: none; padding: 0; }
+.domain-list li {
+    margin-bottom: 12px; color: var(--text-muted); font-weight: 500;
+    display: flex; align-items: center; font-size: 0.95rem;
+}
+.domain-list li::before {
+    content: '•'; color: var(--accent); font-weight: bold;
+    font-size: 1.2rem; line-height: 0; margin-right: 10px;
 }
 
-/* Restores color when you move your mouse over it */
-.hero-img img:hover {
-    filter: grayscale(0%);
+/* 5. Professional Toolkit (Soft Skills) */
+.soft-skills-container {
+    margin-top: 50px; padding-top: 30px;
+    border-top: 1px dashed var(--border-color);
+    text-align: center;
+}
+.soft-skills-container h3 {
+    font-family: var(--font-heading); font-size: 1.2rem; color: var(--text-muted);
+    margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1.5px;
+}
+.soft-skills-grid {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 15px; align-content: center;
+}
+.soft-skill-badge {
+    background: #f1f5f9; color: var(--text-main);
+    padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+    border: 1px solid transparent; transition: all 0.3s ease;
+    display: flex; align-items: center; gap: 10px;
+}
+.soft-skill-badge i { color: var(--accent); }
+.soft-skill-badge:hover {
+    background: white; border-color: var(--accent); color: var(--accent);
+    transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-/* ... other CSS ... */
-
-/* 4. Philosophy Grid */
-#philosophy { padding: 60px 0; background: #f1f5f9; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-.philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-.philo-box h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 15px; color: var(--accent); }
-.philo-box i { margin-right: 8px; }
-.philo-box p { font-size: 0.95rem; color: var(--text-muted); }
-
-/* 5. Experience Timeline */
-#experience { padding: 80px 0; }
-.section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 50px; }
-
+/* 6. Experience Timeline */
+#experience { padding: 80px 0; border-top: 1px solid var(--border-color); }
 .timeline { border-left: 2px solid var(--border-color); margin-left: 10px; padding-left: 40px; }
 .timeline-item { margin-bottom: 50px; position: relative; }
 .timeline-item:last-child { margin-bottom: 0; }
@@ -114,143 +149,83 @@ nav { padding: 30px 0; margin-bottom: 20px; }
     content: ''; position: absolute; left: -49px; top: 5px; width: 16px; height: 16px;
     background: var(--bg-color); border: 2px solid var(--accent); border-radius: 50%;
 }
-
 .timeline-date { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
 .timeline-content h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 5px; }
 .company { display: block; font-weight: 700; color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; }
 .timeline-content p { color: var(--text-muted); max-width: 650px; font-size: 0.95rem; }
 
-/* 6. Tech Stack */
-#tech-stack { padding: 60px 0; background: white; border-top: 1px solid var(--border-color); }
-.section-label { text-align: center; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #888; margin-bottom: 30px; }
-.tech-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-.tech-item { font-weight: 700; color: var(--text-muted); background: #f8fafc; padding: 10px 20px; border-radius: 50px; border: 1px solid var(--border-color); }
+/* =========================================
+   7. Projects (UPDATED)
+   ========================================= */
+#projects { padding: 100px 0; border-top: 1px solid var(--border-color); }
 
-/* 7. Projects */
-#projects { padding: 100px 0; }
 .project-row {
-    display: grid; grid-template-columns: 3fr 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--border-color);
+    display: grid; 
+    grid-template-columns: 3fr 1fr; /* LEFT column (info) vs RIGHT column (meta) */
+    gap: 40px; 
+    padding: 40px 0; 
+    border-bottom: 1px solid var(--border-color);
 }
 .project-row:last-child { border-bottom: none; }
+
+/* Left Side Info */
 .project-info h3 { font-size: 1.4rem; margin-bottom: 10px; font-family: var(--font-heading); }
 .project-info p { margin-bottom: 15px; color: var(--text-muted); }
-.lang-tag { font-family: monospace; font-size: 0.8rem; background: #e2e8f0; color: var(--accent); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-right: 5px; }
 
-/* Footer */
-footer { padding: 80px 0; background: #f1f5f9; margin-top: 60px; }
-.footer-layout { display: flex; justify-content: space-between; align-items: center; }
-.social-links { display: flex; gap: 20px; font-weight: 700; }
-
-@media (max-width: 768px) {
-    .hero-layout { grid-template-columns: 1fr; text-align: center; }
-    .hero-img { order: -1; margin: 0 auto 30px; }
-    .hero-text h1 { font-size: 2.5rem; }
-    .cta-group { justify-content: center; }
-    .project-row { grid-template-columns: 1fr; }
-    .footer-layout { flex-direction: column; gap: 30px; text-align: center; }
+.lang-tag { 
+    font-family: monospace; font-size: 0.8rem; background: #e2e8f0; 
+    color: var(--accent); padding: 4px 10px; border-radius: 4px; 
+    display: inline-block; margin-right: 5px; 
 }
 
-/* Add this to the bottom of style.css */
-
-.social-links a {
+/* RIGHT SIDE META: Stacks Date (Top) and Link (Bottom) */
+.project-meta {
     display: flex;
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
+    flex-direction: column; /* Vertical stack */
+    align-items: flex-end;  /* Aligns to the right */
+    justify-content: center; /* Centers vertically */
+    height: 100%;
 }
 
-.social-links a i {
-    font-size: 1.2rem; /* Make icons slightly larger than text */
-    transition: transform 0.2s ease;
+.project-date {
+    font-size: 0.85rem; 
+    color: #888; 
+    font-weight: 600; 
+    margin-bottom: 15px; /* Adds space between Date and Link */
+    white-space: nowrap;
 }
 
-.social-links a:hover i {
-    transform: translateY(-2px); /* Subtle bounce effect on hover */
-    color: var(--accent);
-}
 
+/* 8. Footer */
+footer { padding: 80px 0; background: #f1f5f9; margin-top: 0; }
+.footer-layout { display: flex; justify-content: space-between; align-items: center; }
+.social-links { display: flex; gap: 25px; font-weight: 700; }
+.social-links a { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+.social-links a i { font-size: 1.2rem; transition: transform 0.2s ease; }
+.social-links a:hover { color: var(--accent); }
+.social-links a:hover i { transform: translateY(-2px); }
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-
-    /* 1. Global Layout */
-    .container {
-        padding: 0 20px; /* Smaller side padding on phones */
-    }
-
-    /* 2. Navigation: Stack the logo and links */
-    .nav-wrapper {
-        flex-direction: column;
-        gap: 20px;
-    }
+    .container { padding: 0 20px; }
+    .nav-wrapper { flex-direction: column; gap: 20px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .hero-layout { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-img { order: -1; margin: 0 auto; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .cta-group { justify-content: center; }
+    .timeline { padding-left: 25px; }
+    .timeline-item::before { left: -34px; }
     
-    .nav-links {
-        flex-wrap: wrap; /* Allows links to wrap if screen is very tiny */
-        justify-content: center;
-        gap: 15px;
-    }
-
-    /* 3. Hero Section: Image First, Text Second */
-    .hero-layout {
-        grid-template-columns: 1fr; /* Single column */
-        text-align: center;
-        gap: 40px;
-    }
-
-    /* Move the image to the top for visual impact on mobile */
-    .hero-img {
-        order: -1; 
-        margin: 0 auto; /* Center the image */
-    }
-
-    .hero-text h1 {
-        font-size: 2.2rem; /* Smaller font so it fits screen */
-    }
-    
-    .cta-group {
-        justify-content: center; /* Center the buttons */
-    }
-
-    /* 4. Philosophy & Skills Grids */
-    .philosophy-grid, 
-    .tech-grid {
-        grid-template-columns: 1fr; /* Force single column */
-    }
-    
-    /* Center the Tech Stack bubbles on mobile */
-    .tech-grid {
-        justify-content: center;
-    }
-
-    /* 5. Experience Timeline */
-    /* Tighten the spacing */
-    .timeline {
-        padding-left: 25px; 
-    }
-    
-    .timeline-item::before {
-        left: -34px; /* Re-align the dot */
-    }
-
-    /* 6. Projects Section */
-    .project-row {
-        grid-template-columns: 1fr; /* Stack Info on top of Meta */
-        gap: 15px;
-    }
-
-    .project-meta {
-        align-items: flex-start; /* Align left */
-        flex-direction: row; /* Keep date and link side-by-side */
+    /* Project Mobile Fix */
+    .project-row { grid-template-columns: 1fr; gap: 20px; }
+    .project-meta { 
+        align-items: flex-start; /* Align left on mobile */
+        flex-direction: row;     /* Side by side on mobile */
         justify-content: space-between;
         width: 100%;
-        margin-top: 10px;
     }
 
-    /* 7. Footer */
-    .footer-layout {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
+    .footer-layout { flex-direction: column; text-align: center; gap: 30px; }
+    .social-links { justify-content: center; }
 }

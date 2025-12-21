@@ -57,16 +57,17 @@ async function getRepos() {
             const row = document.createElement('div');
             row.classList.add('project-row');
 
+            // --- HTML STRUCTURE ---
+            // Left Side: Info. Right Side: Date & Link stacked.
             row.innerHTML = `
                 <div class="project-info">
                     <h3>${displayTitle}</h3>
                     <p>${displayDesc}</p>
-                    ${tagsHtml}
+                    <div>${tagsHtml}</div>
                 </div>
+
                 <div class="project-meta">
-                    <span style="font-size: 0.85rem; color: #888; font-weight:600; margin-bottom: 10px;">
-                        Updated: ${date}
-                    </span>
+                    <span class="project-date">Updated: ${date}</span>
                     <a href="${repo.html_url}" target="_blank" class="link-text">
                         View Source <i class="fas fa-arrow-right" style="font-size: 0.8em;"></i>
                     </a>
@@ -82,4 +83,5 @@ async function getRepos() {
     }
 }
 
+// Run the function
 getRepos();
