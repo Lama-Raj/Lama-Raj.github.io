@@ -1,0 +1,3 @@
+.github/
+# Optional: ignore GitHub workflows or other files inside .github
+# .github/workflows/
