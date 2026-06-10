@@ -3,18 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raj Lama | Network Engineer & Developer</title>
+    <title>Raj Lama | Portfolio</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Raj Lama</h1>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#home">Raj Lama</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          Menu
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section reveal" id="home">
+        <p class="eyebrow">Network Engineer & Developer</p>
+        <h1>Clean, focused work with a calm white aesthetic.</h1>
+        <p class="intro">
+          I build simple digital experiences, reliable systems, and polished
+          portfolio pages with a strong attention to detail.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">View Projects</a>
+          <a class="button button-secondary" href="#contact">Get In Touch</a>
+        </div>
+      </section>
+
+      <section class="section reveal" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>Simple design, clear communication, solid execution.</h2>
+        </div>
+        <p class="body-copy">
+          This portfolio keeps the layout airy and minimal so the content stays
+          easy to scan. The navigation stays visible, the footer stays grounded,
+          and the motion stays subtle.
+        </p>
+      </section>
+
+      <section class="section reveal" id="projects">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+          <h2>A few focused examples.</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Portfolio Refresh</h3>
+            <p>
+              Minimal layout, white theme, and smooth reveal animation for a
+              polished first impression.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Network Dashboard</h3>
+            <p>
+              Simple monitoring concept with clear structure and easy-to-read
+              status panels.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Support Landing Page</h3>
+            <p>
+              Lightweight service page with concise text, crisp navigation, and
+              a strong footer.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="contact">
+        <div class="contact-panel">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Open to new opportunities and collaborations.</h2>
+          </div>
+          <a class="button button-primary" href="mailto:raj@example.com"
+            >raj@example.com</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Raj Lama. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
