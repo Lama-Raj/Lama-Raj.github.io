@@ -232,8 +232,124 @@ h3 {
 .site-footer {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1rem 1.25rem 2.5rem;
+  padding: 1.4rem 1.25rem 2.5rem;
   border-top: 1px solid rgba(31, 41, 55, 0.08);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+}
+
+.footer-block {
+  padding: 0;
+}
+
+.footer-block h2,
+.footer-block h3 {
+  margin: 0 0 0.75rem;
+  color: #111827;
+}
+
+.footer-block h2 {
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+}
+
+.footer-block h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.footer-about p,
+.footer-bottom p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.footer-bottom p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  color: #4b5563;
+}
+
+.footer-list a {
+  color: #1f2937;
+}
+
+.footer-list a:hover,
+.footer-list a:focus-visible {
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(31, 41, 55, 0.18);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.7);
+  color: #1f2937;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.social-logo {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.social-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: #0a66c2;
+}
+
+.social-text {
+  line-height: 1;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  transform: translateY(-1px);
+  background: #ffffff;
+}
+
+.footer-bottom {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(31, 41, 55, 0.1);
   text-align: center;
 }
 
@@ -284,6 +400,10 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -298,6 +418,10 @@ h3 {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .site-footer {
+    padding: 1.1rem 0.75rem 2rem;
   }
 
   h1 {
