@@ -217,3 +217,45 @@ toggleSwitch.addEventListener("change", function (e) {
     localStorage.setItem("portfolio-theme", "light");
   }
 });
+// --- Terminal Typewriter Effect ---
+const typewriterText = document.getElementById("typewriter-text");
+
+if (typewriterText) {
+  // The sequence of commands to type
+  const typingSequence = [
+    "> establishing_secure_connection...",
+    "> decrypting_profile_data.sys...",
+    "> Computer Science & Cyber Security | Networks",
+  ];
+
+  async function typeEffect() {
+    // Helper function to create pauses
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    for (let i = 0; i < typingSequence.length; i++) {
+      const phrase = typingSequence[i];
+
+      // Type out the phrase character by character
+      for (let j = 0; j <= phrase.length; j++) {
+        typewriterText.textContent = phrase.substring(0, j);
+
+        // Randomize typing speed slightly for realism (30ms to 70ms)
+        const typeSpeed = Math.random() * 40 + 30;
+        await sleep(typeSpeed);
+      }
+
+      // If it's NOT the last phrase, wait a moment, then delete it
+      if (i < typingSequence.length - 1) {
+        await sleep(1000); // Wait 1 second before deleting
+
+        for (let j = phrase.length; j >= 0; j--) {
+          typewriterText.textContent = phrase.substring(0, j);
+          await sleep(15); // Deletion is usually faster than typing
+        }
+      }
+    }
+  }
+
+  // Start the typing effect 500ms after the page loads
+  setTimeout(typeEffect, 500);
+}

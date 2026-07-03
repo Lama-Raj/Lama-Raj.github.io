@@ -1406,3 +1406,29 @@ body.dark-theme .social-logo img[src*="github"] {
     border-color: var(--border-color);
   }
 }
+/* --- Terminal Typewriter Cursor --- */
+.terminal-prompt {
+  display: inline-flex;
+  align-items: center;
+  font-family: monospace; /* Gives it a true command-line feel */
+  letter-spacing: 0.1em;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: var(--accent);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
