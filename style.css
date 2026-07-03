@@ -846,7 +846,19 @@ h3 {
     top: 100%;
     right: 1.25rem;
     left: 1.25rem;
-    display: none;
+
+    /* --- NEW ANIMATION LOGIC --- */
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px); /* Starts slightly shifted up */
+    pointer-events: none; /* Prevents clicking invisible links */
+    transition:
+      opacity 300ms ease,
+      transform 300ms ease,
+      visibility 300ms ease;
+    /* --------------------------- */
+
     flex-direction: column;
     align-items: flex-start;
     gap: 1.15rem;
@@ -859,7 +871,12 @@ h3 {
   }
 
   .nav-links.is-open {
-    display: flex;
+    /* --- NEW ANIMATION LOGIC --- */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Slides down into place */
+    pointer-events: auto; /* Re-enables clicking */
+    /* --------------------------- */
   }
 
   .project-row {
@@ -1373,4 +1390,19 @@ body.dark-theme .social-link:focus-visible {
 /* Invert the pure black GitHub icon to pure white */
 body.dark-theme .social-logo img[src*="github"] {
   filter: invert(1);
+}
+/* --- Fix Mobile Menu in Dark Mode --- */
+@media (max-width: 860px) {
+  /* Fixes the dropdown menu background */
+  body.dark-theme .nav-links {
+    background: rgba(15, 23, 42, 0.96); /* Deep dark blue to match the header */
+    border-color: var(--border-color);
+  }
+
+  /* Fixes the "Menu" toggle button itself */
+  body.dark-theme .nav-toggle {
+    background: rgba(30, 41, 59, 0.8); /* Semi-transparent dark pill */
+    color: var(--accent); /* Crisp white text */
+    border-color: var(--border-color);
+  }
 }
