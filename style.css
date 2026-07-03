@@ -276,6 +276,34 @@ h3 {
   gap: 1.1rem;
 }
 
+.about-points {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.about-points li {
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  color: #4b5563;
+  line-height: 1.55;
+}
+
+.about-points li::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  margin-bottom: 0.65rem;
+  background: #111827;
+  border-radius: 999px;
+}
+
 .about-focus {
   margin: 0.4rem 0 0;
   padding-top: 1rem;
@@ -283,15 +311,7 @@ h3 {
   color: #4b5563;
   line-height: 1.7;
   font-size: 1rem;
-  font-weight: 500;
-}
-
-.about-focus::before {
-  content: "Focus:";
-  margin-right: 0.35rem;
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 600;
 }
 
 .skills-domain-grid {
@@ -712,7 +732,7 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .about-highlights {
+  .about-points {
     grid-template-columns: 1fr;
   }
 
