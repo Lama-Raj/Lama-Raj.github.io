@@ -36,9 +36,132 @@ if ("IntersectionObserver" in window) {
   revealElements.forEach((element) => element.classList.add("is-visible"));
 }
 
+// async function loadGitHubProjects() {
+//   if (!projectsList) {
+//     return;
+//   }
+
+//   const githubUser = projectsList.dataset.githubUser;
+//   if (!githubUser) {
+//     projectsList.innerHTML =
+//       '<p class="projects-status">No GitHub user configured for this section.</p>';
+//     return;
+//   }
+
+//   try {
+//     const response = await fetch(
+//       `https://api.github.com/users/${encodeURIComponent(githubUser)}/repos?sort=pushed&direction=desc&per_page=10`,
+//       {
+//         headers: {
+//           Accept: "application/vnd.github+json",
+//         },
+//       },
+//     );
+
+//     if (!response.ok) {
+//       throw new Error(`GitHub request failed with status ${response.status}`);
+//     }
+
+//     const repositories = await response.json();
+//     const recentProjects = repositories
+//       .filter(
+//         (repo) =>
+//           !repo.fork &&
+//           !repo.archived &&
+//           !ignoredRepositoryNames.has(repo.name),
+//       )
+//       .slice(0, 5);
+
+//     const repositoriesWithLanguages = await Promise.all(
+//       recentProjects.map(async (repo) => {
+//         if (!repo.languages_url) {
+//           return { ...repo, languages: [] };
+//         }
+
+//         try {
+//           const languageResponse = await fetch(repo.languages_url, {
+//             headers: {
+//               Accept: "application/vnd.github+json",
+//             },
+//           });
+
+//           if (!languageResponse.ok) {
+//             return { ...repo, languages: repo.language ? [repo.language] : [] };
+//           }
+
+//           const languageMap = await languageResponse.json();
+//           const languages = Object.entries(languageMap)
+//             .sort((first, second) => second[1] - first[1])
+//             .map(([language]) => language)
+//             .slice(0, 3);
+
+//           return {
+//             ...repo,
+//             languages: languages.length
+//               ? languages
+//               : repo.language
+//                 ? [repo.language]
+//                 : [],
+//           };
+//         } catch (error) {
+//           return { ...repo, languages: repo.language ? [repo.language] : [] };
+//         }
+//       }),
+//     );
+
+//     if (!repositoriesWithLanguages.length) {
+//       projectsList.innerHTML =
+//         '<p class="projects-status">No recent public GitHub projects found.</p>';
+//       return;
+//     }
+
+//     projectsList.innerHTML = repositoriesWithLanguages
+//       .map((repo) => {
+//         const description = repo.description || "No description provided yet.";
+//         const updatedAt = repo.pushed_at
+//           ? new Date(repo.pushed_at).toLocaleDateString(undefined, {
+//               month: "short",
+//               year: "numeric",
+//             })
+//           : "Recently updated";
+
+//         return `
+//           <article class="project-row">
+//             <div class="project-info">
+//               <h3>${repo.name}</h3>
+//               <p>${description}</p>
+//               <div class="project-langs">
+//                 ${(repo.languages || [repo.language || "Code"])
+//                   .filter(Boolean)
+//                   .map(
+//                     (language) => `<span class="lang-tag">${language}</span>`,
+//                   )
+//                   .join("")}
+//               </div>
+//             </div>
+//             <div class="project-meta">
+//               <span class="project-date">Updated: ${updatedAt}</span>
+//               <a class="link-text" href="${repo.html_url}" target="_blank" rel="noopener">View Source &rarr;</a>
+//             </div>
+//           </article>
+//         `;
+//       })
+//       .join("");
+//   } catch (error) {
+//     projectsList.innerHTML =
+//       '<p class="projects-status">Could not load GitHub projects right now. Please try again later.</p>';
+//   }
+// }
 async function loadGitHubProjects() {
   if (!projectsList) {
     return;
+  }
+
+  // 1. Check if we already have the projects saved in the browser
+  const cachedProjects = sessionStorage.getItem("github_portfolio_cache");
+  if (cachedProjects) {
+    projectsList.innerHTML = cachedProjects;
+    return; // Stop here, no need to call the API!
   }
 
   const githubUser = projectsList.dataset.githubUser;
@@ -115,7 +238,8 @@ async function loadGitHubProjects() {
       return;
     }
 
-    projectsList.innerHTML = repositoriesWithLanguages
+    // 2. Generate the HTML string
+    const finalHTML = repositoriesWithLanguages
       .map((repo) => {
         const description = repo.description || "No description provided yet.";
         const updatedAt = repo.pushed_at
@@ -147,7 +271,13 @@ async function loadGitHubProjects() {
         `;
       })
       .join("");
+
+    // 3. Put the HTML on the page and save it to the cache
+    projectsList.innerHTML = finalHTML;
+    sessionStorage.setItem("github_portfolio_cache", finalHTML);
   } catch (error) {
+    // 4. Log the actual error to the console so you can see it!
+    console.error("GitHub API Error:", error);
     projectsList.innerHTML =
       '<p class="projects-status">Could not load GitHub projects right now. Please try again later.</p>';
   }
