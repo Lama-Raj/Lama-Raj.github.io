@@ -1,7 +1,7 @@
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const revealElements = document.querySelectorAll(".reveal");
-const projectsGrid = document.querySelector(".projects-grid");
+const projectsList = document.querySelector("#project-list");
 const ignoredRepositoryNames = new Set(["Lama-Raj", "Lama-Raj.github.io"]);
 
 if (navToggle && navLinks) {
@@ -37,20 +37,20 @@ if ("IntersectionObserver" in window) {
 }
 
 async function loadGitHubProjects() {
-  if (!projectsGrid) {
+  if (!projectsList) {
     return;
   }
 
-  const githubUser = projectsGrid.dataset.githubUser;
+  const githubUser = projectsList.dataset.githubUser;
   if (!githubUser) {
-    projectsGrid.innerHTML =
+    projectsList.innerHTML =
       '<p class="projects-status">No GitHub user configured for this section.</p>';
     return;
   }
 
   try {
     const response = await fetch(
-      `https://api.github.com/users/${encodeURIComponent(githubUser)}/repos?sort=pushed&direction=desc&per_page=6`,
+      `https://api.github.com/users/${encodeURIComponent(githubUser)}/repos?sort=pushed&direction=desc&per_page=10`,
       {
         headers: {
           Accept: "application/vnd.github+json",
@@ -70,51 +70,85 @@ async function loadGitHubProjects() {
           !repo.archived &&
           !ignoredRepositoryNames.has(repo.name),
       )
-      .slice(0, 3);
+      .slice(0, 5);
 
-    if (!recentProjects.length) {
-      projectsGrid.innerHTML =
+    const repositoriesWithLanguages = await Promise.all(
+      recentProjects.map(async (repo) => {
+        if (!repo.languages_url) {
+          return { ...repo, languages: [] };
+        }
+
+        try {
+          const languageResponse = await fetch(repo.languages_url, {
+            headers: {
+              Accept: "application/vnd.github+json",
+            },
+          });
+
+          if (!languageResponse.ok) {
+            return { ...repo, languages: repo.language ? [repo.language] : [] };
+          }
+
+          const languageMap = await languageResponse.json();
+          const languages = Object.entries(languageMap)
+            .sort((first, second) => second[1] - first[1])
+            .map(([language]) => language)
+            .slice(0, 3);
+
+          return {
+            ...repo,
+            languages: languages.length
+              ? languages
+              : repo.language
+                ? [repo.language]
+                : [],
+          };
+        } catch (error) {
+          return { ...repo, languages: repo.language ? [repo.language] : [] };
+        }
+      }),
+    );
+
+    if (!repositoriesWithLanguages.length) {
+      projectsList.innerHTML =
         '<p class="projects-status">No recent public GitHub projects found.</p>';
       return;
     }
 
-    projectsGrid.innerHTML = recentProjects
+    projectsList.innerHTML = repositoriesWithLanguages
       .map((repo) => {
         const description = repo.description || "No description provided yet.";
-        const language = repo.language || "Code";
         const updatedAt = repo.pushed_at
           ? new Date(repo.pushed_at).toLocaleDateString(undefined, {
               month: "short",
               year: "numeric",
             })
           : "Recently updated";
-        const liveLink = repo.homepage ? repo.homepage.trim() : "";
 
         return `
-          <article class="card project-card">
-            <div class="project-card__top">
-              <h3 class="project-card__title">${repo.name}</h3>
-              <span class="project-card__badge">${language}</span>
+          <article class="project-row">
+            <div class="project-info">
+              <h3>${repo.name}</h3>
+              <p>${description}</p>
+              <div class="project-langs">
+                ${(repo.languages || [repo.language || "Code"])
+                  .filter(Boolean)
+                  .map(
+                    (language) => `<span class="lang-tag">${language}</span>`,
+                  )
+                  .join("")}
+              </div>
             </div>
-            <p>${description}</p>
-            <div class="project-card__meta">
-              <span>Updated ${updatedAt}</span>
-              <span>${repo.stargazers_count} stars</span>
-            </div>
-            <div class="project-card__actions">
-              <a class="project-link" href="${repo.html_url}" target="_blank" rel="noopener">View Repo</a>
-              ${
-                liveLink
-                  ? `<a class="project-link" href="${liveLink}" target="_blank" rel="noopener">Live Demo</a>`
-                  : ""
-              }
+            <div class="project-meta">
+              <span class="project-date">Updated: ${updatedAt}</span>
+              <a class="link-text" href="${repo.html_url}" target="_blank" rel="noopener">View Source &rarr;</a>
             </div>
           </article>
         `;
       })
       .join("");
   } catch (error) {
-    projectsGrid.innerHTML =
+    projectsList.innerHTML =
       '<p class="projects-status">Could not load GitHub projects right now. Please try again later.</p>';
   }
 }
