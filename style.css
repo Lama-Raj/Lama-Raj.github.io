@@ -333,10 +333,93 @@ h3 {
 }
 
 .contact-panel {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(31, 41, 55, 0.08);
-  border-radius: 1.5rem;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 2rem;
+  align-items: start;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(31, 41, 55, 0.08);
+}
+
+.contact-note {
+  margin: 0;
+  line-height: 1.7;
+  color: #4b5563;
+  font-size: 1.02rem;
+}
+
+.contact-mini {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(17, 24, 39, 0.12);
+}
+
+.contact-mini-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.contact-mini a {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 34rem;
+}
+
+.contact-field {
+  display: grid;
+  gap: 0.5rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.contact-field span {
+  font-size: 0.95rem;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid rgba(31, 41, 55, 0.1);
+  border-radius: 0.9rem;
+  padding: 0.95rem 1rem;
+  font: inherit;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.72);
+  resize: vertical;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: #9ca3af;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: rgba(17, 24, 39, 0.28);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.contact-message {
+  margin-bottom: 0.15rem;
+}
+
+.contact-submit {
+  width: fit-content;
 }
 
 #projects {
@@ -429,7 +512,16 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.contact-copy {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 30rem;
 }
 
 .site-footer {
@@ -618,8 +710,12 @@ h3 {
   }
 
   .contact-panel {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-form {
+    width: 100%;
   }
 
   .footer-grid {
