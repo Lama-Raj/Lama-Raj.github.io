@@ -1204,14 +1204,15 @@ body,
 
 /* Make the background image look great in Dark Mode */
 body.dark-theme::before {
-  /* This flips the image: light grey becomes dark, dark lines become light */
-  filter: invert(1) contrast(1.1);
+  /* Load the new dark mode image */
+  background-image: url("assets/s3.avif");
 
-  /* This drops the dark background of the image so only the light lines show */
-  mix-blend-mode: screen;
+  /* Reset the filters we used on the previous light image */
+  filter: none;
+  mix-blend-mode: normal;
 
-  /* Lowers the opacity so the glowing lines aren't too distracting */
-  opacity: calc(var(--bg-opacity) * 0.4);
+  /* Set the opacity back to normal (or adjust this number if it's too bright) */
+  opacity: var(--bg-opacity);
 }
 
 body.dark-theme .lang-tag {
