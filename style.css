@@ -7,6 +7,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: "DM Sans", sans-serif;
   color: #1f2937;
@@ -76,6 +77,12 @@ a {
   height: 100%;
   display: block;
   fill: currentColor;
+  transition: transform 180ms ease;
+}
+
+.nav-links a:hover .nav-icon svg,
+.nav-links a:focus-visible .nav-icon svg {
+  transform: translateY(-1px) scale(1.06);
 }
 
 .nav-links a::after {
@@ -118,10 +125,41 @@ main {
 }
 
 .hero {
+  position: relative;
   min-height: calc(100vh - 6rem);
   display: grid;
   align-content: center;
   gap: 1.4rem;
+}
+
+.hero .hero-kicker,
+.hero .eyebrow,
+.hero h1,
+.hero .intro,
+.hero .hero-actions {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroFadeUp 700ms ease forwards;
+}
+
+.hero .hero-kicker {
+  animation-delay: 90ms;
+}
+
+.hero .eyebrow {
+  animation-delay: 160ms;
+}
+
+.hero h1 {
+  animation-delay: 240ms;
+}
+
+.hero .intro {
+  animation-delay: 320ms;
+}
+
+.hero .hero-actions {
+  animation-delay: 400ms;
 }
 
 .eyebrow {
@@ -191,6 +229,10 @@ h3 {
   transform: translateY(-2px);
 }
 
+.button:active {
+  transform: translateY(0);
+}
+
 .button-primary {
   background: #111827;
   color: #fff;
@@ -211,6 +253,15 @@ h3 {
   display: grid;
   gap: 0.65rem;
   margin-bottom: 1.5rem;
+}
+
+.section-heading::after {
+  content: "";
+  width: 4rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #111827, rgba(17, 24, 39, 0.15));
+  animation: dividerDrift 6s ease-in-out infinite;
 }
 
 .section-heading .eyebrow {
@@ -262,6 +313,7 @@ h3 {
   height: 14rem;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(17, 24, 39, 0.12), transparent 70%);
+  animation: softFloat 10s ease-in-out infinite;
 }
 
 .about-image {
@@ -326,6 +378,10 @@ h3 {
   background: rgba(255, 255, 255, 0.86);
   border: 1px solid rgba(31, 41, 55, 0.08);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
 }
 
 .domain-icon {
@@ -344,6 +400,19 @@ h3 {
   width: 1.45rem;
   height: 1.45rem;
   fill: currentColor;
+  transition: transform 180ms ease;
+}
+
+.domain-card:hover,
+.domain-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.08);
+  border-color: rgba(17, 24, 39, 0.14);
+}
+
+.domain-card:hover .domain-icon svg,
+.domain-card:focus-within .domain-icon svg {
+  transform: scale(1.08) rotate(-4deg);
 }
 
 .domain-card h3 {
@@ -470,6 +539,9 @@ h3 {
   gap: 40px;
   padding: 40px 0;
   border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
 }
 
 .project-row:last-child {
@@ -526,12 +598,29 @@ h3 {
   font-weight: 700;
 }
 
+.link-text {
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.link-text:hover,
+.link-text:focus-visible {
+  transform: translateY(-2px);
+}
+
 .project-row:last-child {
   border-bottom: none;
 }
 
 .project-row:first-child {
   padding-top: 0;
+}
+
+.project-row:hover,
+.project-row:focus-within {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .contact-panel {
@@ -634,7 +723,8 @@ h3 {
   text-decoration: none;
   transition:
     transform 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .social-logo {
@@ -664,8 +754,66 @@ h3 {
 
 .social-link:hover,
 .social-link:focus-visible {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   background: #ffffff;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dividerDrift {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-4px, 8px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero .hero-kicker,
+  .hero .eyebrow,
+  .hero h1,
+  .hero .intro,
+  .hero .hero-actions,
+  .section-heading::after,
+  .about-image-card::after,
+  .nav-icon svg,
+  .domain-icon svg,
+  .button,
+  .project-row,
+  .social-link,
+  .link-text {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .footer-bottom {
@@ -783,6 +931,9 @@ h3 {
 
 /* Theme variables used site-wide */
 :root {
+  :root {
+    --bg-opacity: 0.6; /* Sets the starting opacity */
+  }
   --border-color: rgba(31, 41, 55, 0.08);
   --bg-color: #ffffff;
   --accent: #111827;
@@ -852,4 +1003,32 @@ h3 {
   .timeline-item::before {
     left: -32px;
   }
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: url("assets/s2.webp");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+
+  /* Update this line to use the variable: */
+  opacity: var(--bg-opacity);
 }

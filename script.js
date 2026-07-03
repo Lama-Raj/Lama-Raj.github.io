@@ -154,3 +154,27 @@ async function loadGitHubProjects() {
 }
 
 loadGitHubProjects();
+// --- Background Scroll Fade Effect ---
+window.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
+
+  // How many pixels the user needs to scroll before the image is completely gone
+  const fadeDistance = 700;
+
+  // The starting opacity of your background (matches the 0.6 we set earlier)
+  const maxOpacity = 0.6;
+
+  // Calculate the new opacity: goes from 0.6 down to 0
+  let newOpacity = maxOpacity - (scrollPosition / fadeDistance) * maxOpacity;
+
+  // Prevent the opacity from dropping below 0
+  if (newOpacity < 0) {
+    newOpacity = 0;
+  }
+
+  // Update the CSS variable in real-time
+  document.documentElement.style.setProperty(
+    "--bg-opacity",
+    newOpacity.toFixed(3),
+  );
+});
