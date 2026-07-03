@@ -1358,3 +1358,18 @@ body.dark-theme .contact-mini a,
 body.dark-theme .footer-list a {
   color: var(--accent);
 }
+/* --- Fix Social Links in Dark Mode --- */
+body.dark-theme .social-link {
+  color: var(--accent); /* Makes the text white/light-grey */
+}
+
+/* Give the buttons a nice subtle glow when hovered in Dark Mode */
+body.dark-theme .social-link:hover,
+body.dark-theme .social-link:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Invert the pure black GitHub icon to pure white */
+body.dark-theme .social-logo img[src*="github"] {
+  filter: invert(1);
+}
