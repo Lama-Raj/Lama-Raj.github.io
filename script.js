@@ -259,3 +259,31 @@ if (typewriterText) {
   // Start the typing effect 500ms after the page loads
   setTimeout(typeEffect, 500);
 }
+// --- Scroll Spy Navigation Highlight ---
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".nav-links a[href^='#']");
+
+window.addEventListener("scroll", () => {
+  let currentSection = "";
+
+  // Calculate the current scroll position with an offset for the sticky header
+  const scrollY = window.scrollY + 150;
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+
+    // Check if the current scroll position is inside this section
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  // Loop through nav links and add/remove the active class
+  navItems.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${currentSection}`) {
+      link.classList.add("active");
+    }
+  });
+});

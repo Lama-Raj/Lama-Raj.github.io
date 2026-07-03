@@ -92,14 +92,16 @@ a {
   bottom: -0.35rem;
   width: 100%;
   height: 2px;
-  background: #111827;
+  background: currentColor; /* Changed to currentColor so it adapts to Dark Mode */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 180ms ease;
 }
 
+/* Added the .active class to trigger the underline */
 .nav-links a:hover::after,
-.nav-links a:focus-visible::after {
+.nav-links a:focus-visible::after,
+.nav-links a.active::after {
   transform: scaleX(1);
 }
 
