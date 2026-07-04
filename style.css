@@ -50,7 +50,7 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1.2rem;
 }
 
 .nav-links a {
@@ -1433,4 +1433,30 @@ body.dark-theme .social-logo img[src*="github"] {
   50% {
     opacity: 0;
   }
+}
+/* --- Fix Contact Form in Dark Mode --- */
+/* 1. Make the "Name", "Email", and "Message" labels crisp and readable */
+body.dark-theme .contact-field {
+  color: var(--accent);
+}
+
+/* 2. Make the input boxes dark, sleek, and integrated into the theme */
+body.dark-theme .contact-field input,
+body.dark-theme .contact-field textarea {
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--accent);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 3. Soften the placeholder text ("John Doe", etc.) so it isn't distracting */
+body.dark-theme .contact-field input::placeholder,
+body.dark-theme .contact-field textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* 4. Add a subtle glow when you click into a box to type */
+body.dark-theme .contact-field input:focus,
+body.dark-theme .contact-field textarea:focus {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.5); /* Subtle cyber-blue glow */
 }

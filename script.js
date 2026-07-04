@@ -287,3 +287,53 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+// --- EmailJS Contact Form Logic ---
+
+// 1. Initialize EmailJS
+emailjs.init("BU9pJODa_EOd6-gkH");
+
+const contactForm = document.getElementById("contact-form");
+const submitButton = document.getElementById("submit-button");
+const formStatus = document.getElementById("form-status");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevents the page from refreshing
+
+    // Change button text to show it is working
+    const originalText = submitButton.textContent;
+    submitButton.textContent = "Sending...";
+    submitButton.style.opacity = "0.7";
+    submitButton.disabled = true;
+    formStatus.textContent = ""; // Clear previous messages
+
+    // 2. Send the form data
+    emailjs
+      .sendForm("service_8hwe1ki", "template_ngqt3qt", this)
+      .then(
+        function () {
+          // Success
+          formStatus.textContent =
+            "Message sent successfully! I will get back to you soon.";
+          formStatus.style.color = "#10b981"; // Success green
+          contactForm.reset(); // Clear the inputs
+        },
+        function (error) {
+          // Error
+          formStatus.textContent =
+            "Failed to send message. Please try again or email me directly.";
+          formStatus.style.color = "#ef4444"; // Error red
+          console.error("EmailJS Error:", error);
+        },
+      )
+      .finally(function () {
+        // Reset the button back to normal
+        submitButton.textContent = originalText;
+        submitButton.style.opacity = "1";
+        submitButton.disabled = false;
+
+        // Hide the status message after 5 seconds
+        setTimeout(() => (formStatus.textContent = ""), 5000);
+      });
+  });
+}
