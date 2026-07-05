@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Raj Lama | Portfolio</title>
-
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lama-raj.github.io/" />
     <meta property="og:title" content="Raj Lama | Cybersecurity & Networks" />
@@ -16,7 +15,6 @@
       property="og:image"
       content="https://lama-raj.github.io/assets/og-preview.png"
     />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://lama-raj.github.io/" />
     <meta name="twitter:title" content="Raj Lama | Cybersecurity & Networks" />
@@ -28,7 +26,6 @@
       name="twitter:image"
       content="https://lama-raj.github.io/assets/og-preview.jpg"
     />
-
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
@@ -40,6 +37,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Site Header present Navigation Bar -->
     <header class="site-header">
       <nav class="nav" aria-label="Primary">
         <a class="brand" href="#home">Raj Lama</a>
@@ -127,7 +125,6 @@
                   <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-
                 <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
@@ -140,8 +137,8 @@
         </div>
       </nav>
     </header>
-
     <main>
+      <!-- Hero Section That Introduces the User -->
       <section class="hero section reveal" id="home">
         <p class="eyebrow terminal-prompt">
           <span id="typewriter-text"></span><span class="cursor">&nbsp;</span>
@@ -163,59 +160,42 @@
           </a>
         </div>
       </section>
-
-      <section class="section reveal about-section" id="about">
-        <div class="section-heading about-heading">
-          <p class="eyebrow">About</p>
-          <h2>Professional Summary</h2>
-        </div>
-        <div class="about-grid">
-          <figure class="about-image-card">
-            <img
-              class="about-image"
-              src="assets/me.svg"
-              alt="Portrait of Raj Lama"
-            />
-          </figure>
-
-          <div class="about-copy">
-            <p class="body-copy">
-              I’m Raj Lama, a cybersecurity and networking professional with
-              hands-on experience in risk assessment, vulnerability management,
-              and incident response. I combine security awareness with
-              development skills in Python, C#, SQL, PowerShell, and Bash.
+      <!-- About Section That Tells the Story about Me -->
+      <section class="section reveal" id="about">
+        <div class="pure-wrap-container">
+          <!-- Heading & Text on the Left -->
+          <div class="section-heading wrap-heading">
+            <p class="eyebrow">Behind the Code</p>
+            <h2>About Me</h2>
+          </div>
+          <!-- Circular Image Floated Right -->
+          <img src="assets/me.jpeg" alt="Raj Lama" class="circular-wrap-img" />
+          <div class="pure-wrap-text">
+            <p class="lead-paragraph">
+              I am a cybersecurity professional and software developer with a
+              Master's in Cybersecurity & Networks from the University of New
+              Haven. I operate at the intersection of robust security protocols
+              and efficient application development.
             </p>
-            <p class="body-copy">
-              My background includes SOC work, technical documentation, and
-              cross-functional collaboration. I enjoy turning complex problems
-              into clear, reliable solutions and building work that is secure,
-              practical, and easy to maintain.
+            <p>
+              My technical foundation spans secure network infrastructure and
+              modern software engineering. Whether I am architecting an Android
+              application like <em>Personal Health Buddy</em> using Kotlin and
+              Jetpack Compose, or deploying dynamic, database-driven web
+              platforms, I ensure that a zero-trust mindset is built into the
+              architecture from the very first line of code.
             </p>
-            <p class="body-copy">
-              Currently pursuing a Master’s in Cybersecurity & Networks, I’m
-              focused on roles where development, security, and networking come
-              together to support modern digital environments.
-            </p>
-
-            <ul class="about-points" aria-label="Key strengths">
-              <li>
-                Risk assessment, vulnerability management, and incident response
-              </li>
-              <li>
-                Automation and scripting with Python, PowerShell, and Bash
-              </li>
-              <li>
-                Clear communication, teamwork, and technical documentation
-              </li>
-            </ul>
-
-            <p class="about-focus">
-              Open to security engineering, networking, and software roles.
+            <p>
+              Beyond development, I have hands-on experience in risk assessment,
+              vulnerability management, and incident response. I rely heavily on
+              Python, PowerShell, and Bash scripting to automate defenses,
+              eliminate manual vulnerabilities, and scale secure systems
+              rapidly.
             </p>
           </div>
         </div>
       </section>
-
+      <!-- Projects Section with dynamic content -->
       <section class="section reveal" id="projects">
         <div class="section-heading about-heading">
           <p class="eyebrow">Projects</p>
@@ -232,7 +212,7 @@
           <p class="projects-status">Loading projects from GitHub...</p>
         </div>
       </section>
-
+      <!-- Skills Section to present my skills -->
       <section class="section reveal" id="skills">
         <div class="section-heading">
           <p class="eyebrow">Skills</p>
@@ -256,7 +236,6 @@
               <li>VPNs & Network Security</li>
             </ul>
           </article>
-
           <article class="domain-card">
             <div class="domain-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img" aria-label="">
@@ -274,7 +253,6 @@
               <li>Git & Version Control</li>
             </ul>
           </article>
-
           <article class="domain-card">
             <div class="domain-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img" aria-label="">
@@ -294,7 +272,7 @@
           </article>
         </div>
       </section>
-
+      <!-- My Timeline about work experience and education -->
       <section class="section reveal" id="timeline">
         <div class="section-heading">
           <p class="eyebrow">TimeLine</p>
@@ -316,7 +294,6 @@
               </p>
             </div>
           </article>
-
           <article class="timeline-item">
             <time class="timeline-date" datetime="2024-02">Feb 2024</time>
             <div class="timeline-content">
@@ -329,7 +306,6 @@
               </p>
             </div>
           </article>
-
           <article class="timeline-item">
             <time class="timeline-date" datetime="2021-09"
               >Sep 2021 - Jan 2022</time
@@ -345,7 +321,6 @@
               </p>
             </div>
           </article>
-
           <article class="timeline-item">
             <time class="timeline-date" datetime="2019-08"
               >Aug 2019 - Oct 2022</time
@@ -361,12 +336,12 @@
           </article>
         </div>
       </section>
+      <!-- Contact Section With Emailjs Service Used to Contact Me -->
       <section class="section reveal" id="contact">
         <div class="section-heading">
           <p class="eyebrow">Get In Touch</p>
           <h2>Let's build something secure.</h2>
         </div>
-
         <div class="contact-panel">
           <div class="contact-copy">
             <p class="contact-note">
@@ -382,7 +357,6 @@
               >
             </div>
           </div>
-
           <form class="contact-form" id="contact-form">
             <label class="contact-field">
               <span>Name</span>
@@ -393,7 +367,6 @@
                 required
               />
             </label>
-
             <label class="contact-field">
               <span>Email</span>
               <input
@@ -403,7 +376,6 @@
                 required
               />
             </label>
-
             <label class="contact-field contact-message">
               <span>Message</span>
               <textarea
@@ -413,7 +385,6 @@
                 required
               ></textarea>
             </label>
-
             <button
               type="submit"
               class="button button-primary contact-submit"
@@ -429,7 +400,7 @@
         </div>
       </section>
     </main>
-
+    <!-- Footer for the website -->
     <footer class="site-footer" id="footer">
       <div class="footer-grid">
         <section
@@ -443,7 +414,6 @@
             infrastructure.
           </p>
         </section>
-
         <section class="footer-block" aria-labelledby="footer-social-title">
           <h3 id="footer-social-title">Social Media</h3>
           <div class="social-links">
@@ -500,12 +470,10 @@
           </div>
         </section>
       </div>
-
       <div class="footer-bottom">
-        <p>© 2026 Raj Lama. All rights reserved.</p>
+        <p>2026 Raj Lama. All rights reserved.</p>
       </div>
     </footer>
-
     <script src="script.js"></script>
   </body>
 </html>

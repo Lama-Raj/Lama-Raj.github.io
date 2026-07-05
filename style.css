@@ -20,7 +20,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
+#home {
+  scroll-margin-top: 130px;
+}
 .site-header {
   position: sticky;
   top: 0;
@@ -277,36 +279,6 @@ h3 {
   line-height: 1.05;
 }
 
-.about-section {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.about-image-card {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  border-radius: 1.75rem;
-  min-height: 520px;
-  background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(255, 255, 255, 0.72),
-      transparent 28%
-    ),
-    linear-gradient(160deg, rgba(17, 24, 39, 0.08), rgba(17, 24, 39, 0.02)),
-    #ffffff;
-  border: 1px solid rgba(31, 41, 55, 0.08);
-  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.08);
-}
-
 .about-image-card::after {
   content: "";
   position: absolute;
@@ -316,27 +288,6 @@ h3 {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(17, 24, 39, 0.12), transparent 70%);
   animation: softFloat 10s ease-in-out infinite;
-}
-
-.about-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-copy {
-  display: grid;
-  gap: 1.1rem;
-}
-
-.about-points {
-  list-style: none;
-  margin: 0.2rem 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.8rem;
 }
 
 .about-points li {
@@ -356,16 +307,6 @@ h3 {
   margin-bottom: 0.65rem;
   background: #111827;
   border-radius: 999px;
-}
-
-.about-focus {
-  margin: 0.4rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(31, 41, 55, 0.08);
-  color: #4b5563;
-  line-height: 1.7;
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .skills-domain-grid {
@@ -687,15 +628,6 @@ h3 {
   margin-top: 0.5rem;
 }
 
-.footer-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.6rem;
-  color: #4b5563;
-}
-
 .footer-list a {
   color: #1f2937;
 }
@@ -825,16 +757,9 @@ h3 {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 700ms ease,
-    transform 700ms ease;
-}
-
-.reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  transition: none;
 }
 
 @media (max-width: 860px) {
@@ -898,14 +823,6 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .about-points {
-    grid-template-columns: 1fr;
-  }
-
-  .about-image-card {
-    min-height: 420px;
-  }
-
   .contact-panel {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -932,10 +849,6 @@ h3 {
 
   .section {
     padding: 3rem 0;
-  }
-
-  .about-image-card {
-    min-height: 360px;
   }
 
   .site-footer {
@@ -1051,26 +964,6 @@ body::before {
 }
 
 /* --- Featured Projects Grid --- */
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-}
-
-.featured-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
-  overflow: hidden;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
 
 .featured-card:hover,
 .featured-card:focus-within {
@@ -1079,34 +972,8 @@ body::before {
 }
 
 /* Temporary placeholder until you add real images */
-.featured-image-placeholder {
-  width: 100%;
-  height: 220px;
-  background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
 
 /* If using a real image, use this class instead */
-.featured-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.featured-content {
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
 
 .featured-content h3 {
   font-size: 1.5rem;
@@ -1120,38 +987,13 @@ body::before {
   flex-grow: 1;
 }
 
-.featured-links {
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(31, 41, 55, 0.08);
-}
-
 /* --- Theme Toggle Button Styling --- */
-.theme-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 1.2rem;
-  color: inherit;
-  padding: 0;
-}
 
 .theme-toggle:hover .nav-icon svg {
   transform: translateY(-1px) scale(1.06);
 }
 
 @media (max-width: 860px) {
-  .theme-toggle {
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
-    width: 100%;
-  }
 }
 
 /* --- Dark Mode Overrides --- */
@@ -1458,4 +1300,80 @@ body.dark-theme .contact-field input:focus,
 body.dark-theme .contact-field textarea:focus {
   background: rgba(15, 23, 42, 0.9);
   border-color: rgba(56, 189, 248, 0.5); /* Subtle cyber-blue glow */
+}
+/* --- CIRCULAR WRAPAROUND LAYOUT --- */
+.pure-wrap-container {
+  display: block;
+  margin-top: 2rem;
+  overflow: hidden; /* Clears the float at the bottom */
+}
+
+/* Circular Image on the Right */
+.circular-wrap-img {
+  float: right;
+
+  width: 390px; /* Makes it a "Big" image */
+  height: 390px; /* Height must match width for a perfect circle */
+  object-fit: cover; /* Prevents your portrait from squishing */
+  border-radius: 50%; /* Turns the image into a circle */
+
+  /* THE MAGIC: Forces text to hug the curve of the circle! */
+  shape-outside: circle(50%);
+
+  margin-left: 3.5rem; /* Spacing between text and the image */
+  margin-bottom: 2rem; /* Spacing before text wraps underneath */
+
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+  background: var(--bg-color);
+}
+
+body.dark-theme .circular-wrap-img {
+  background: rgba(30, 41, 59, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Fix heading alignment to match the top of the circle */
+.wrap-heading {
+  margin-top: 0;
+  padding-top: 15px; /* Pushes the text down slightly to match the curve's optical top */
+  margin-bottom: 1.5rem;
+}
+
+.wrap-heading h2 {
+  margin-top: 0.5rem;
+}
+
+/* Typography for the wrapping text */
+.pure-wrap-text p {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  text-align: justify; /* Creates a clean, blocky look next to the curve */
+}
+
+.pure-wrap-text .lead-paragraph {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.pure-wrap-text strong {
+  color: var(--accent);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .circular-wrap-img {
+    float: none; /* Stops wrapping on phone screens */
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: 280px; /* Slightly smaller for mobile */
+    height: 280px;
+    shape-outside: none; /* Turn off curve wrapping for mobile */
+  }
+  .pure-wrap-text p {
+    text-align: left; /* Reverts text alignment for easier mobile reading */
+  }
 }
