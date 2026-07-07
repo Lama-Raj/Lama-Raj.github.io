@@ -1312,22 +1312,19 @@ body.dark-theme .contact-field textarea:focus {
 .circular-wrap-img {
   float: right;
 
-  width: 390px; /* Makes it a "Big" image */
-  height: 390px; /* Height must match width for a perfect circle */
+  width: 420px; /* Makes it a "Big" image */
+  height: 420px; /* Height must match width for a perfect circle */
   object-fit: cover; /* Prevents your portrait from squishing */
   border-radius: 50%; /* Turns the image into a circle */
-
   /* THE MAGIC: Forces text to hug the curve of the circle! */
   shape-outside: circle(50%);
-
   margin-left: 3.5rem; /* Spacing between text and the image */
   margin-bottom: 2rem; /* Spacing before text wraps underneath */
 
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
   background: var(--bg-color);
 }
-
-body.dark-theme .circular-wrap-img {
+.circular-wrap-img body.dark-theme .circular-wrap-img {
   background: rgba(30, 41, 59, 0.6);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
