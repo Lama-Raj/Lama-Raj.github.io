@@ -742,11 +742,6 @@ h3 {
     animation: none !important;
     transition: none !important;
   }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 .footer-bottom {
@@ -754,12 +749,6 @@ h3 {
   padding-top: 0.9rem;
   /* border-top: 1px solid rgba(31, 41, 55, 0.1); */
   text-align: center;
-}
-
-.reveal {
-  opacity: 1;
-  transform: none;
-  transition: none;
 }
 
 @media (max-width: 860px) {
