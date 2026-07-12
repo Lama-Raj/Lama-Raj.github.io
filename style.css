@@ -377,7 +377,7 @@ h3 {
   gap: 2rem;
   align-items: start;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(31, 41, 55, 0.08);
+  /* border-top: 1px solid rgba(31, 41, 55, 0.08); */
 }
 
 .contact-note {
@@ -468,6 +468,7 @@ h3 {
 
 #project-list {
   display: grid;
+  margin-top: 1.5rem;
 }
 
 .projects-status {
@@ -564,17 +565,6 @@ h3 {
 .project-row:focus-within {
   transform: translateY(-2px);
   background: transparent;
-}
-
-.contact-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
 }
 
 .contact-copy {
@@ -891,14 +881,14 @@ h3 {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-muted);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   display: block;
 }
 .timeline-content h3 {
   font-family: var(--font-heading);
   font-size: 1.3rem;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .company {
   display: block;
@@ -1173,6 +1163,22 @@ input:checked + .slider::before {
     border-top: 1px solid var(--border-color);
     width: 100%;
     justify-content: flex-start;
+  }
+  .contact-panel {
+    grid-template-columns: 1fr; /* Stacks the content in a single column */
+    flex-direction: column; /* Fallback to ensure flex alignment changes on mobile */
+    gap: 2rem;
+    padding: 1.5rem 1rem; /* Adds comfortable breathing room on phone edges */
+  }
+
+  .contact-copy {
+    max-width: 100%; /* Allows text to fill the mobile width */
+    text-align: left; /* Keeps reading flow natural on mobile */
+  }
+
+  .contact-form {
+    width: 100%;
+    max-width: 100%; /* Form expands to match the mobile screen profile */
   }
 }
 
